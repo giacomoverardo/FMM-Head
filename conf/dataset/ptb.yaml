@@ -1,0 +1,53 @@
+# conf/dataset/ptb.yaml
+
+name: ptb
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_ptb_xl_dataset
+  datapath: ${data_path}
+  lead: None #1 #[0,1,2,3,4,5,6,7,8,9,10,11]
+  hexad: False
+preprocess_function:
+  _target_: src.preprocessing.ptb.preprocess_data_ptb
+  sequence_length: ${dataset.sequence_length}
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  split_ecg: ${dataset.split_ecg}
+  
+resultsfolder : ptb
+num_features : 12
+sequence_length : 1000
+
+fs : 100
+split_ecg: false
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.00005
+  patience: 15
+
+cut_area_percentage : 0.99
+undersample: false
+
+# {
+#     "fs" : 100,
+#     "resultsfolder" : "ptb",
+#     "num_features" : 1,
+#     "sequence_length" : 1000,
+#     "steps_per_epoch" : "None",
+#     "alpha" : 1.0,
+#     "beta" : 0.0003,
+#     "lr" : 0.00001,
+#     "batch_size" : 16,
+#     "num_epochs" : 1000,
+#     "min_delta" : 0.0001,
+#     "patience" : 10,
+#     "latent_dim" : 90,
+#     "lstm_layers" : 2,
+#     "lstm_layers_decoder" : 2,
+#     "lstm_units_per_layer" : 128,
+#     "add_lstm_encoder_pool" : true,
+#     "cut_area_percentage" : 0.99,
+#     "split_ecg": true,
+#     "undersample": false
+#     }

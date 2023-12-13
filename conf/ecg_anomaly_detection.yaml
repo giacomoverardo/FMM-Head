@@ -1,0 +1,19 @@
+# conf/ecg_anomaly_detection.yaml
+
+defaults:
+  - optimizer: adam     # Optimizer to be used during training
+  - model: bert_ecg     # Model 
+  - dataset: ecg5000    # Dataset
+  - _self_
+
+train:                  
+  num_epochs: 500       # Number of training epochs
+
+root_path: ./                     # Location of your python script
+output_dir: ${root_path}/results  # Location of final results
+data_path: ${root_path}/data      # Location of input data
+batch_size: 16                    # Batch size
+save_plots: True                  # Save resulting plot or not
+seed: 23                          # Seed for reproducibility
+completed: False                  # Is simulation completed (always false at startup)
+tb_output_dir: "${output_dir}/${model.name}_${dataset.name}/split_${dataset.split_ecg}_opt_${optimizer.name}_lr_${optimizer.learning_rate}/${now:%Y-%m-%d}/${now:%H-%M-%S}"

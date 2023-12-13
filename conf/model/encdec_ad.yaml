@@ -1,0 +1,9 @@
+# conf/model/encdec_ad.yaml
+
+_target_: src.models.encdecAD.EncDecAD
+name: encdec_ad
+
+enc_units: [200]
+dec_units: [200]
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}

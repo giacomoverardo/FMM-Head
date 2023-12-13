@@ -1,0 +1,20 @@
+# conf/model/ecg_adgan.yaml
+
+_target_: src.models.ecgadgan.EcgAdGan
+name: ecg_adgan
+
+latent_size: 100
+random_sine: false
+scale: 1
+minibatch: true
+save_interval: 1000
+save_model_interval: 200
+save_model: true
+
+optimizer: ${optimizer}
+
+num_warmup_epochs: 0
+
+batch_size: ${batch_size}
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}

@@ -1,0 +1,29 @@
+# conf/dataset/mitbih.yaml
+
+name: mitbih
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_mit_bih_dataset
+  datapath: ${data_path}
+  lead: 0
+preprocess_function:
+  _target_: src.preprocessing.mitbih.preprocess_data_mit_bih
+  sequence_length: ${dataset.sequence_length}
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  split_ecg: ${dataset.split_ecg}
+
+resultsfolder : mitbih
+num_features : 1
+sequence_length : 500
+
+fs : 360
+split_ecg: true
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.00005
+  patience: 15
+
+cut_area_percentage : None
+undersample: false

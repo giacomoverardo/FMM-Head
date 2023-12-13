@@ -1,0 +1,16 @@
+# conf/model/fmm_encdec_ad.yaml
+
+_target_: src.models.encdecAD.FMM_EncDecAD
+name: fmm_encdec_ad
+
+enc_units: [200]
+
+batch_size: ${batch_size}
+num_leads : ${dataset.num_features}
+seq_len : ${dataset.sequence_length}
+split_ecg: ${dataset.split_ecg}
+max_omega: 0.20
+reconstruction_loss_weight: 1.0
+coefficient_loss_weight: 1.0
+num_warmup_epochs: 500
+coeffs_properties_dict: ???

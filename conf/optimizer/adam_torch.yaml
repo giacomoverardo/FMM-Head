@@ -1,0 +1,6 @@
+# conf/optimizer/adam_torch.yaml
+
+_target_: src.optimizers.adam_torch.Adam_Torch
+name: adam_torch
+learning_rate: 0.0001
+

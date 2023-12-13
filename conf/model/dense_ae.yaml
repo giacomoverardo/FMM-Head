@@ -1,0 +1,9 @@
+# conf/model/dense_ae.yaml
+
+_target_: src.models.dense_ae.Dense_ae
+name: dense_ae
+
+units: [512, 256, 128, 64, 32, 64, 128, 256, 512]
+dropout_rate: 0.1
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}

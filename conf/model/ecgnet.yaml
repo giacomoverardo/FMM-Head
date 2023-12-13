@@ -1,0 +1,11 @@
+# conf/model/ecgnet.yaml
+
+_target_: src.models.ecgnet.EcgNet
+name: ecgnet
+
+enc_units: [128, 64, 32]
+dec_units: [32, 64, 128]
+dropout_rate: 0.2
+add_relu: True
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}

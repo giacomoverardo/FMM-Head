@@ -1,0 +1,11 @@
+# conf/model/attention_ae.yaml
+
+_target_: src.models.transformer.Attention_AE
+name: attention_ae
+
+num_heads: [6,2]
+d_model: [32,16]
+dff: [64,32]
+dropout_rate: 0.1
+input_vocab_size: None
+target_vocab_size: ${dataset.num_features}

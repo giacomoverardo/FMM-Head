@@ -1,0 +1,14 @@
+# conf/model/bert_ecg.yaml
+
+_target_: src.models.transformer.Bert_ecg
+name: bert_ecg
+
+num_heads: 32
+num_layers: 2
+d_model: 128
+dff: 128
+dropout_rate: 0.1
+input_vocab_size: None
+final_layer_nodes: [256]
+target_vocab_size: ${dataset.num_features}
+max_len: ${dataset.sequence_length}

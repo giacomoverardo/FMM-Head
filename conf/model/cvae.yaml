@@ -1,0 +1,14 @@
+# conf/model/cvae.yaml
+
+_target_: src.models.cvae.CVAE
+name: cvae
+
+latent_dim: 60
+input_seq_len: ${dataset.sequence_length}
+num_features: ${dataset.num_features}
+batch_size: ${batch_size}
+alpha: 1.0
+beta: 1.0
+f1: 19
+f2: 9
+num_warmup_epochs: 500

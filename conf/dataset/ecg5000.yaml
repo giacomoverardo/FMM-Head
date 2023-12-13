@@ -1,0 +1,28 @@
+# conf/dataset/ecg5000.yaml
+
+name: ecg5000
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_ecg5000_dataset
+  datapath: ${data_path}
+preprocess_function:
+  _target_: src.preprocessing.ecg5000.preprocess_data_ecg5000
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  
+  
+resultsfolder : ECG5000
+num_features : 1
+sequence_length : 140
+select_only_normal: true
+val_size: 0.2 
+fs : 100
+split_ecg: true
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.0005
+  patience: 20
+
+cut_area_percentage : 0.99 # Not used
+undersample: false         # Not used

@@ -1,0 +1,35 @@
+# conf/dataset/shaoxing_fmm.yaml
+
+name: shaoxing_fmm
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_shaoxing_fmm_dataset
+  datapath: ${data_path}
+  lead: 1 #[0,1,2,3,4,5,6,7,8,9,10,11]
+  sequence_length: ${dataset.sequence_length}
+  num_waves: ${dataset.num_waves}
+  num_leads: ${dataset.num_features}
+preprocess_function:
+  _target_: src.preprocessing.shaoxing.preprocess_data_shaoxing_fmm
+  sequence_length: ${dataset.sequence_length}
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  split_ecg: ${dataset.split_ecg}
+
+resultsfolder : shaoxing
+num_features : 1
+sequence_length : 1000
+num_waves: 5
+select_only_normal: true
+val_size: 0.2 
+fs : 500
+split_ecg: true
+test_size: 0.2
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.00005
+  patience: 15
+
+cut_area_percentage : None  # Not used
+undersample: false          # Not used

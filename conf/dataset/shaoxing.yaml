@@ -1,0 +1,32 @@
+# conf/dataset/shaoxing.yaml
+
+name: shaoxing
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_shaoxing_dataset
+  datapath: ${data_path}
+  lead: None
+  split_seed: ${seed}
+  test_size: ${dataset.test_size}
+preprocess_function:
+  _target_: src.preprocessing.shaoxing.preprocess_data_shaoxing
+  sequence_length: ${dataset.sequence_length}
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  split_ecg: ${dataset.split_ecg}
+
+resultsfolder : shaoxing
+num_features : 12
+sequence_length : 5000
+
+fs : 500
+split_ecg: true
+test_size: 0.0
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.00005
+  patience: 15
+
+cut_area_percentage : None
+undersample: false

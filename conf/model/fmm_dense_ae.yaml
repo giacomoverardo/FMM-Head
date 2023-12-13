@@ -1,0 +1,19 @@
+# conf/model/dense_ae.yaml
+
+_target_: src.models.dense_ae.FMM_dense_ae
+name: fmm_dense_ae
+
+units: [512, 256, 128, 64, 32]
+dropout_rate: 0.1
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}
+
+batch_size: ${batch_size}
+num_leads : ${dataset.num_features}
+seq_len : ${dataset.sequence_length}
+split_ecg: ${dataset.split_ecg}
+max_omega: 0.20
+reconstruction_loss_weight: 1.0
+coefficient_loss_weight: 1.0
+num_warmup_epochs: 500
+coeffs_properties_dict: ???

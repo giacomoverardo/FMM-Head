@@ -1,0 +1,34 @@
+# conf/dataset/ptb.yaml
+
+name: ptb_xl_fmm
+load_function:
+  _target_: src.datasets.datasetsLibrary.get_ptb_xl_fmm_dataset
+  datapath: ${data_path}
+  lead: 1 #[0,1,2,3,4,5,6,7,8,9,10,11]
+  sequence_length: ${dataset.sequence_length}
+  num_waves: ${dataset.num_waves}
+  num_leads: ${dataset.num_features}
+  # hexad: False
+preprocess_function:
+  _target_: src.preprocessing.ptb.preprocess_data_ptb_xl_fmm
+  fs: ${dataset.fs}
+  batch_size: ${batch_size}
+  split_ecg: ${dataset.split_ecg}
+  
+resultsfolder : ptb_xl_fmm
+num_features : 1 # use 12 to use all the leads
+sequence_length : 300
+num_waves: 5
+select_only_normal: true
+val_size: 0.2 
+fs : 100
+split_ecg: true
+
+es_callback: 
+  _target_: tensorflow.keras.callbacks.EarlyStopping
+  monitor: val_loss
+  min_delta: 0.00005
+  patience: 15
+
+cut_area_percentage : 0.99 # Not used
+undersample: false         # Not used

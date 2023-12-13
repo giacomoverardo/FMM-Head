@@ -1,0 +1,12 @@
+# conf/model/conv_ae.yaml
+
+_target_: src.models.conv_ae.Conv_AE
+name: conv_ae
+
+num_filters_list: [64,32,8,2,2,8,32,64] #[128,64,32,16,16,32,64,128]
+kernel_sizes_list: 10
+strides_list: 2
+padding: same
+activation: tanh
+dropout_rate: 0.1
+num_leads : ${dataset.num_features}

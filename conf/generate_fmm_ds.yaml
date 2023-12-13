@@ -1,0 +1,17 @@
+# conf/generate_fmm_ds.yaml
+
+defaults:
+  - dataset: ptb
+  - _self_
+
+
+root_path: ./                     # Location of your python script
+output_dir: ${root_path}/results  # Location of your results
+data_path: ${root_path}/data      # Location of input data 
+R_path:                           # The path of the R interpreter 
+fmm_r_repo_path: ???              # The path of the FMMECG3D code location 
+batch_size: 25                    # Batch size (if used)
+seed: 23                          # Seed for reproducibility (if used)
+save_plots: False                 # Save plots or not
+  
+tb_output_dir: "${output_dir}/fmm_coefficients/${now:%Y-%m-%d}/${now:%H-%M-%S}"

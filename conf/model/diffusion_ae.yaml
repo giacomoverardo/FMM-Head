@@ -1,0 +1,28 @@
+# conf/model/diffusion_ae.yaml
+
+_target_: src.models.diffusion_ae.Diffusion_AE
+name: diffusion_ae
+
+diff_lambda: 0.1
+denoise_steps: 20
+anomaly_score: diffusion
+training: both
+model: TransformerBasicBottleneckScaling
+window_size: ${dataset.sequence_length}
+noise_steps: 100
+test_only: false
+
+num_epochs: ${train.num_epochs}
+optimizer: ${optimizer}
+learning_rate: ${optimizer.learning_rate}
+batch_size: ${batch_size}
+file: None 
+
+p1: 1
+p2: 1
+k: 1
+v: false
+
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}
+num_warmup_epochs: 0

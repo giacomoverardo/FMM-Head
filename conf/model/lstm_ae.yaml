@@ -1,0 +1,11 @@
+# conf/model/lstm_ae.yaml
+
+_target_: src.models.ecgnet.EcgNet
+name: lstm_ae
+
+enc_units: [256, 128, 64]
+dec_units: [64, 128, 256]
+dropout_rate: 0.0
+add_relu: False
+sequence_length: ${dataset.sequence_length}
+num_features: ${dataset.num_features}
